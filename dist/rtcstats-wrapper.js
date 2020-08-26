@@ -1551,12 +1551,15 @@
 	          return RTCStatsReferences.RTCVideoReceivers.key;
 	        } else if (stats.remoteSource && stats.hasOwnProperty("audioLevel")) {
 	          return RTCStatsReferences.RTCAudioReceivers.key;
+	        } else if (stats.remoteSource) {
+	          return RTCStatsReferences.RTCAudioReceivers.key;
 	        } else if (stats.hasOwnProperty("frameHeight")) {
 	          return RTCStatsReferences.RTCVideoSenders.key;
 	        } else if (stats.hasOwnProperty("audioLevel")) {
 	          return RTCStatsReferences.RTCAudioSenders.key;
+	        } else {
+	          return RTCStatsReferences.RTCAudioSenders.key;
 	        }
-	        break;
 	      case "inbound-rtp":
 	        if (stats.mediaType === "video") {
 	          return RTCStatsReferences.RTCInboundRtpVideoStreams.key;
@@ -1752,6 +1755,7 @@
 
 	  switch (browser.name) {
 	    case "chrome":
+	    case "edge-chromium":
 	      return ChromeRTCStatsReport;
 	    case "firefox":
 	      return FirefoxRTCStatsReport;
